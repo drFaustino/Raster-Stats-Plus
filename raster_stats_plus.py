@@ -59,10 +59,9 @@ class RasterStatsPlus:
         self.plugin_dir = os.path.dirname(__file__)
         # initialize locale
         locale = QSettings().value('locale/userLocale')[0:2]
-        locale_path = os.path.join(
-            self.plugin_dir,
-            'i18n',
-            'RasterStatsPlus_{}.qm'.format(locale))
+        
+        # initialize locale path
+        locale_path = os.path.join(self.plugin_dir, 'i18n', f'raster_stats_plus_{locale}.qm')
 
         if os.path.exists(locale_path):
             self.translator = QTranslator()
