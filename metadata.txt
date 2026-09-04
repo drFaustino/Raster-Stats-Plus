@@ -1,47 +1,62 @@
-# This file contains metadata for your plugin.
-
-# This file should be included when you package your plugin.# Mandatory items:
-
 [general]
-name=Raster Stats Plus
-qgisMinimumVersion=3.0
-description=Calculates detailed statistics of a selected raster layer, allows you to choose the band via a menu, and generates histogram and Gaussian curve plots.
-version=0.1
-author=Dr. Geol. Faustino Cetraro
-email=geol-faustino@libero.it
-
-about=Allows you to calculate statistics for a selected raster layer, applying a precision that covers the entire raster. It offers the possibility to select the band of interest via a drop-down menu, and allows you to generate the histogram and Gaussian curve plot associated with the raster data.
-
-tracker=https://github.com/drFaustino/Raster-Stats-Plus
-repository=https://github.com/drFaustino/Raster-Stats-Plus
-# End of mandatory metadata
-
-# Recommended items:
-
-hasProcessingProvider=no
-# Uncomment the following line and add your changelog:
-# changelog=
-
-# Tags are comma separated with spaces allowed
-tags=analysis, calculator, layers, raster, statistics
-
-homepage=https://github.com/drFaustino/Raster-Stats-Plus
+name=RasterStatsPlus
+description=Calculates extended statistics on raster layers, displays results in a table, generates histograms, and allows exporting to TXT/CSV and PNG/SVG, providing advanced raster analysis with integrated visualization tools.
+about=Raster-derived statistics describe both the spatial structure and the distribution of pixel values. The Cell size X and Cell size Y parameters indicate pixel dimensions in both directions of the reference system, defining the dataset's spatial resolution. Min and Max represent the lowest and highest values in the raster, while the Range expresses the total span as the difference between them. The Mean provides a central measure of the distribution, complemented by Variance and Stddev (standard deviation), which quantify data dispersion. The Median represents the central value and is less sensitive to outliers, while the p5, p25, p75, and p95 percentiles identify key distribution thresholds, useful for detecting extreme values or data concentration. The IQR (Interquartile Range), calculated as p75 − p25, measures 'robust' variability by ignoring extremes. Shape indices like Skewness and Kurtosis describe asymmetry and the 'peakedness' of the distribution, highlighting anomalous tails or peaks. Finally, the Coeff_var (coefficient of variation) expresses relative variability by relating the standard deviation to the mean, making it ideal for comparing rasters with different scales.
 category=Raster
-icon=icon.png
-# experimental flag
-experimental=False
+icon=resources/images/iconstatist.png
+tags=raster,statistics,analysis,histogram,export
 
-# deprecated flag (applies to the whole plugin, not just a single version)
+# credits and contact
+author=Dr. geol. Faustino Cetraro
+email=geol-faustino@libero.it
+homepage=https://github.com/drFaustino/Raster-Stats-Plus
+repository=https://github.com/drFaustino/Raster-Stats-Plus
+tracker=https://github.com/drFaustino/Raster-Stats-Plus
+
+# QGIS context
 deprecated=False
+experimental=False
+hasProcessingProvider=False
+qgisMinimumVersion=4.0
+qgisMaximumVersion=4.99
 
-# Since QGIS 3.8, a comma separated list of plugins to be installed
-# (or upgraded) can be specified.
-# Check the documentation for more information.
-# plugin_dependencies=
+# versioning
+version=1.1.0
 
-Category of the plugin: Raster, Vector, Database or Web
-# category=
+changelog=
+  Version 1.1.0 
+    - Fixed Flake8 code quality and style issues across the plugin.
+    - Corrected blank-line formatting and removed trailing whitespace.
+    - Fixed inline statements that violated PEP 8 (E701).
+    - Improved code formatting and import organization.
+    - Reformatted long function calls and expressions for better readability.
+    - Improved exception handling in raster band utilities.
+    - Fixed the translation helper in histogram export to use the correct function signature.
+    - No functional changes to raster statistics, histogram generation, or data export.
 
-# If the plugin can run on QGIS Server.
-server=False
+  Version 1.0.0 
+    - Improved CRS handling and raster statistics robustness
+    - Added explicit import of `QgsRasterBandStats` for QGIS 4 compatibility.
+    - Fixed crash caused by uninitialized variables (`value_range`, `var`, `iqr`) when raster contains only NoData.
+    - Improved NoData detection:
+    - Now reads both provider NoData and user-defined NoData ranges.
+    -Correctly counts NoData pixels in all raster formats.
+    - Added automatic resolution conversion for geographic CRS (e.g., EPSG:4326):
+    - Pixel size is now computed in meters using on‑the‑fly transformation to EPSG:3857.
+    - Prevents `Cell size x = 0` and `Cell size y = 0` issues in lat/long rasters.
+    - Improved statistical computation:
+    - Safe initialization of all metrics.
+    - Robust handling of constant-value rasters.
+    - More stable skewness and kurtosis computation.
+    - General code cleanup and improved numerical stability.
 
+  Version 0.1.1:
+    - Removed unused field `plugin_dependencies=` from metadata.
+
+  Version 0.1.0:
+    - First release of the RasterStatsPlus plugin
+    - Basic and advanced raster statistics
+    - Tabular visualization of results
+    - Integrated histogram in the GUI
+    - TXT/CSV export
+    - PNG/SVG graphic export
