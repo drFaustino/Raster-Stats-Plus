@@ -3,6 +3,9 @@
 **RasterStatsPlus** è un plugin per QGIS progettato per fornire strumenti rapidi, chiari e professionali per l’analisi statistica dei raster.  
 Include il calcolo delle statistiche descrittive e la generazione di istogrammi personalizzabili tramite Matplotlib.
 
+<img width="942" height="750" alt="img1" src="https://github.com/user-attachments/assets/e39788da-769d-4580-bf6c-9d42d5881331" />
+
+
 ---
 
 ## ✨ Funzionalità principali
